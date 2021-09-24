@@ -44,8 +44,8 @@ class Comments extends Component
 //            'body' => 'contents',
 //        ]
 //    ];
-    public SupportTicket $tickets;
-    public string $newComment = '';
+//    public SupportTicket $tickets;
+    public $newComment = '';
     public $image;
     public $ticketId;
 
@@ -106,15 +106,18 @@ class Comments extends Component
 //        alert()->success('Success Title', 'Success Message - alert helper');
 //        Alert::success('Success Title', 'Success Message - use Class');
 
-        $comments = Comment::select('id', 'user_id', 'body', 'created_at', 'image')
-            ->where('support_ticket_id', $this->ticketId)
+        $comments = array();
+        if ($this->ticketId) {
+            $comments = Comment::select('id', 'user_id', 'body', 'created_at', 'image')
+                ->where('support_ticket_id', $this->ticketId)
 //            ->orderByDesc('id')
-            ->latest()      // order by primary key desc
+                ->latest()      // order by primary key desc
 //            ->get();
-            ->paginate(3)      // view 호출 메소드에서만 사용 가능
+                ->paginate(3)      // view 호출 메소드에서만 사용 가능
 //            ->paginate(3, ['*'], 'commentsPage')
-            // $post->comments()->paginate(10, ['*'], 'commentsPage')
-        ;
+                // $post->comments()->paginate(10, ['*'], 'commentsPage')
+            ;
+        }
 
         $data['comments'] = $comments;      // new \stdClass();
 

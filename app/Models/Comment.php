@@ -41,7 +41,10 @@ class Comment extends Model
 
     public function getImagePathAttribute()
     {
-        return Storage::disk('custom_01')->url($this->image);
+        if (Storage::disk('custom_01')->exists($this->image)) {
+            return Storage::disk('custom_01')->url($this->image);
+        }
+        return '';
     }
 
 //    public function deleteConfirmText()

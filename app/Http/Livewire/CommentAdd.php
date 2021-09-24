@@ -18,7 +18,7 @@ class CommentAdd extends Component
 {
     use WithFileUploads;
 
-    public string $newComment = '';
+    public $newComment = '';
     public $image;
     public $ticketId;
     public $customError;

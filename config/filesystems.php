@@ -44,7 +44,7 @@ return [
                     'private' => 0700,
                 ],
             ],
-            'url' => env('APP_URL').'/storage/test',
+            'url' => env('APP_URL').'/test',
         ],
         // - 필자는 custom_01 이라는 이름의 디스크를 정의하여 경로를 지정하였다.
         //----- diks 정보 추가 끝 --------------------------------------------------
@@ -87,7 +87,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('storage/test') => storage_path('app/test'),
+        public_path('test') => storage_path('app/test'),
     ],
 
 ];

@@ -55,8 +55,10 @@
         @endforeach
     </div>
 
+    @if($comments)
 {{--        {{ $comments->links() }}--}}
-    {{ $comments->links('pagination-links') }}
+        {{ $comments->links('pagination-links') }}
+    @endif
 
 </div>
 
@@ -68,48 +70,48 @@
 
 @push('scripts')
     <script>
-        // jQuery fadeout
-        function fadeOutEffect(el, mode) {
-            let fadeTarget = document.querySelector(el);
-            let ms = mode === 'slow' ? 200 : 50;
-            let fadeEffect = setInterval(function () {
-                if (!fadeTarget.style.opacity) {
-                    fadeTarget.style.opacity = 1;
-                }
-                if (fadeTarget.style.opacity > 0) {
-                    fadeTarget.style.opacity -= 0.1;
-                } else {
-                    clearInterval(fadeEffect);
-                    fadeTarget.parentNode.removeChild(fadeTarget);
-                }
-            }, ms);
-        }
+        // // jQuery fadeout
+        // function fadeOutEffect(el, mode) {
+        //     let fadeTarget = document.querySelector(el);
+        //     let ms = mode === 'slow' ? 200 : 50;
+        //     let fadeEffect = setInterval(function () {
+        //         if (!fadeTarget.style.opacity) {
+        //             fadeTarget.style.opacity = 1;
+        //         }
+        //         if (fadeTarget.style.opacity > 0) {
+        //             fadeTarget.style.opacity -= 0.1;
+        //         } else {
+        //             clearInterval(fadeEffect);
+        //             fadeTarget.parentNode.removeChild(fadeTarget);
+        //         }
+        //     }, ms);
+        // }
 
         // jQuery $(document).ready
         // DOMContentLoaded 또는 livewire:load
         document.addEventListener("livewire:load", () => {
-            // window.livewire.on 또는 @this.on
-            window.livewire.on('alert_remove', () => {
-                setTimeout(function(){
-                    fadeOutEffect('.alert-success', 'fast');
-                }, 3000); // 3 secs
-            });
+            // // window.livewire.on 또는 @this.on
+            // window.livewire.on('alert_remove', () => {
+            //     setTimeout(function(){
+            //         fadeOutEffect('.alert-success', 'fast');
+            //     }, 3000); // 3 secs
+            // });
 
-            window.livewire.on('swalSuccess', (obj) => {
-                Swal.fire(
-                    {
-                        title: obj['title'],
-                        text: obj['text'],
-                        icon: 'success',
-                        toast: true,
-                        position: 'top',
-                        timer: 1000,
-                        width: '500px',
-                        showCancelButton: false,
-                        showConfirmButton: false,
-            }
-                );
-            });
+            // window.livewire.on('swalSuccess', (obj) => {
+            //     Swal.fire(
+            //         {
+            //             title: obj['title'],
+            //             text: obj['text'],
+            //             icon: 'success',
+            //             toast: true,
+            //             position: 'top',
+            //             timer: 1000,
+            //             width: '500px',
+            //             showCancelButton: false,
+            //             showConfirmButton: false,
+            // }
+            //     );
+            // });
 
         @this.on('swalConfirm', (callback, commentId, title, text) => {
             // let newText = text.replaceAll('#{commentId}', commentId);
@@ -140,22 +142,22 @@
                 });
             });
 
-            window.livewire.on('fileChosen', () => {
-               let inputField = document.getElementById('image');
-               let file = inputField.files[0];
-               if (file) {
-                   let reader = new FileReader();
-                   reader.onloadend = () => {
-                       // window.livewire.emit('fileUpload', {"rrr" : reader.result});
-                       window.livewire.emit('fileUpload', reader.result);
-                       // console.log(reader.result);
-                   }
-                   reader.readAsDataURL(file);
-               } else {
-                   let imageView = document.getElementById('imageView');
-                   imageView.parentNode.removeChild(imageView);
-               }
-            });
+            // window.livewire.on('fileChosen', () => {
+            //    let inputField = document.getElementById('image');
+            //    let file = inputField.files[0];
+            //    if (file) {
+            //        let reader = new FileReader();
+            //        reader.onloadend = () => {
+            //            // window.livewire.emit('fileUpload', {"rrr" : reader.result});
+            //            window.livewire.emit('fileUpload', reader.result);
+            //            // console.log(reader.result);
+            //        }
+            //        reader.readAsDataURL(file);
+            //    } else {
+            //        let imageView = document.getElementById('imageView');
+            //        imageView.parentNode.removeChild(imageView);
+            //    }
+            // });
 
             {{--Livewire.on('swalConfirm', e => {--}}
             {{--    --}}{{--if (!confirm("{{ trans('global.areYouSure') }}")) {--}}

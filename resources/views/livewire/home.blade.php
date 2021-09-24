@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="flex justify-center">
+    <div class="w-full flex justify-center">
 
         <div class="w-10/12 my-10 flex">
             <div class="w-5/12 p-2 rounded border">
