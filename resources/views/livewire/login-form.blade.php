@@ -7,14 +7,14 @@
             <div class="flex justify-around my-8">
                 <div class="flex flex-wrap w-10/12">
                     <input type="email" class="p-2 rounded border shadow-sm w-full" placeholder="Email"
-                           wire:model="form.email" />
+                           wire:model.defer="form.email" />
                     @error('form.email') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
             </div>
             <div class="flex justify-around my-8">
                 <div class="flex flex-wrap w-10/12">
                     <input type="password" class="p-2 rounded border shadow-sm w-full" placeholder="Password"
-                           wire:model="form.password" />
+                           wire:model.defer="form.password" />
                     @error('form.password') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                 </div>
             </div>

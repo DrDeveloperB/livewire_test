@@ -14,8 +14,10 @@ class LoginForm extends Component
         'password'=> '',
     ];
 
-    public function render()
+    public function render(Request $request)
     {
+//        dd($request->session()->all());
+
         return view('livewire.login-form');
     }
 
@@ -31,17 +33,23 @@ class LoginForm extends Component
             'form.password' => 'required',
         ]);
 
+//        Auth::attempt($this->form);
+
 //        dd($this->form);
 //        DB::enableQueryLog();
 //        dd(Auth::attempt($this->form));
-        Auth::attempt($this->form);
-//        $request->session()->regenerate();
 //        dd(Auth::check());
 //        dd( Auth::user());
-//        dd($request->session());
+//        $request->session()->regenerate();
+//        dd($request->session()->all());
 //        dd(DB::getQueryLog()[0]);
 //        dd(getSqlWithBindings(DB::getQueryLog()));
 //        dd($request->expectsJson());
-        return redirect(route('home'));
+
+//        return redirect(route('home'));
+
+        if (Auth::attempt($this->form)) {
+            return redirect()->intended('home');
+        }
     }
 }

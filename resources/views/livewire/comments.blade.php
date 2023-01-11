@@ -43,7 +43,7 @@
                     --}}
                     {{--                    {{ $comment->body }}--}}
                     {{ $comment['body'] }}
-                    <br>{{ mb_strlen($comment['body']) }}
+{{--                    <br>{{ mb_strlen($comment['body']) }}--}}
                 </p>
                 @if($comment->image)
                     <p>
@@ -55,10 +55,10 @@
         @endforeach
     </div>
 
-    @if($comments)
+{{--    @if($comments)--}}
 {{--        {{ $comments->links() }}--}}
-        {{ $comments->links('pagination-links') }}
-    @endif
+{{--        {{ $comments->links('pagination-links') }}--}}
+{{--    @endif--}}
 
 </div>
 

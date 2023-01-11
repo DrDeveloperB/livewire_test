@@ -22,12 +22,19 @@ use Intervention\Image\Facades\Image;
 |
 */
 
-Route::get('/', function () {
-    return view('livewire.home');
-//    return view('layouts.base');
-})->middleware('auth_livewire');
+//Route::get('/', function () {
+//    return view('livewire.home');
+////    return view('layouts.base');
+//})->middleware('auth_livewire');
+//Route::get('home', [Home::class, 'render'])->name('home')->middleware('auth_livewire');
+// auth_livewire , auth:sanctum
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/', function () {
+        return view('livewire.home');
+    });
+    Route::get('home', [Home::class, 'render'])->name('home');
+});
 
-Route::get('home', [Home::class, 'render'])->name('home')->middleware('auth_livewire');
 Route::group(['middleware' => 'guest'], function () {
     Route::get('loginw', [Login::class, 'render'])->name('loginw');
     Route::get('registerw', [Register::class, 'render'])->name('registerw');

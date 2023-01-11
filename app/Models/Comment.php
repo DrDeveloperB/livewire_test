@@ -11,6 +11,7 @@ class Comment extends Model
 {
     use HasFactory;
 
+    // 필터가 지정되지 않으면 insert 불가
     protected $guarded;
 
     public function creator()

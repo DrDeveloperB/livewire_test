@@ -33,7 +33,7 @@ return [
         //----- diks 정보 추가 시작 --------------------------------------------------
         'custom_01' => [
             'driver' => 'local',
-            'root' => storage_path('app\test'),
+            'root' => storage_path('app/test'),
             'permissions' => [
                 'file' => [
                     'public' => 0664,
@@ -47,6 +47,17 @@ return [
             'url' => env('APP_URL').'/test',
         ],
         // - 필자는 custom_01 이라는 이름의 디스크를 정의하여 경로를 지정하였다.
+
+        /**
+         * 저장소 경로 : 윈도우 \ , 리눅스 /
+         * url 경로 = /
+         */
+        'ticket' => [
+            'driver' => 'local',
+            'root' => storage_path('app/ticket'),
+            'url' => '/ticket',
+//            'url' => env('APP_URL').'/ticket',
+        ],
         //----- diks 정보 추가 끝 --------------------------------------------------
 
         'local' => [
@@ -56,7 +67,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app\public'),
+            'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
@@ -88,6 +99,7 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('test') => storage_path('app/test'),
+        public_path('ticket') => storage_path('app/ticket'),
     ],
 
 ];

@@ -9,9 +9,9 @@
     <div>
         <section>
             @if($image)
-                <img src="{{ $image }}" id="imageView" alt="">
+                <img src="{{ $image }}" id="imageView_comment" alt="">
             @endif
-            <input type="file" id="image" wire:change="$emit('fileChosen')">
+            <input type="file" id="image_comment" wire:change="$emit('fileChosen')">
 {{--            {{ $image }}--}}
 {{--            <input type="file" id="image" wire:model="image">--}}
         </section>
@@ -50,22 +50,22 @@
 
 @push('scripts')
     <script>
-        // jQuery fadeout
-        function fadeOutEffect(el, mode) {
-            let fadeTarget = document.querySelector(el);
-            let ms = mode === 'slow' ? 200 : 50;
-            let fadeEffect = setInterval(function () {
-                if (!fadeTarget.style.opacity) {
-                    fadeTarget.style.opacity = 1;
-                }
-                if (fadeTarget.style.opacity > 0) {
-                    fadeTarget.style.opacity -= 0.1;
-                } else {
-                    clearInterval(fadeEffect);
-                    fadeTarget.parentNode.removeChild(fadeTarget);
-                }
-            }, ms);
-        }
+        // // jQuery fadeout
+        // function fadeOutEffect(el, mode) {
+        //     let fadeTarget = document.querySelector(el);
+        //     let ms = mode === 'slow' ? 200 : 50;
+        //     let fadeEffect = setInterval(function () {
+        //         if (!fadeTarget.style.opacity) {
+        //             fadeTarget.style.opacity = 1;
+        //         }
+        //         if (fadeTarget.style.opacity > 0) {
+        //             fadeTarget.style.opacity -= 0.1;
+        //         } else {
+        //             clearInterval(fadeEffect);
+        //             fadeTarget.parentNode.removeChild(fadeTarget);
+        //         }
+        //     }, ms);
+        // }
 
         // jQuery $(document).ready
         // DOMContentLoaded 또는 livewire:load
@@ -77,21 +77,21 @@
                 }, 3000); // 3 secs
             });
 
-            window.livewire.on('swalSuccess', (obj) => {
-                Swal.fire(
-                    {
-                        title: obj['title'],
-                        text: obj['text'],
-                        icon: 'success',
-                        toast: true,
-                        position: 'top',
-                        timer: 1000,
-                        width: '500px',
-                        showCancelButton: false,
-                        showConfirmButton: false,
-                    }
-                );
-            });
+            // window.livewire.on('swalSuccess', (obj) => {
+            //     Swal.fire(
+            //         {
+            //             title: obj['title'],
+            //             text: obj['text'],
+            //             icon: 'success',
+            //             toast: true,
+            //             position: 'top',
+            //             timer: 1000,
+            //             width: '500px',
+            //             showCancelButton: false,
+            //             showConfirmButton: false,
+            //         }
+            //     );
+            // });
 
         // @this.on('swalConfirm', (callback, commentId, title, text) => {
         //     // let newText = text.replaceAll('#{commentId}', commentId);
@@ -123,7 +123,7 @@
         // });
 
             window.livewire.on('fileChosen', () => {
-                let inputField = document.getElementById('image');
+                let inputField = document.getElementById('image_comment');
                 let file = inputField.files[0];
                 if (file) {
                     let reader = new FileReader();
@@ -134,7 +134,7 @@
                     }
                     reader.readAsDataURL(file);
                 } else {
-                    let imageView = document.getElementById('imageView');
+                    let imageView = document.getElementById('imageView_comment');
                     imageView.parentNode.removeChild(imageView);
                 }
             });

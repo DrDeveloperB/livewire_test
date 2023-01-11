@@ -62,8 +62,8 @@ class CommentAdd extends Component
     protected $messages = [
         'ticketId.required' => '질문이 선택되지 않았습니다.',
         'newComment.required' => '입력된 내용이 없습니다.',
-        'newComment.min' => '최소 10자이상 입혁해주세요.',
-        'newComment.max' => '최데 100자이하로 입혁해주세요.',
+        'newComment.min' => '최소 10자이상 입력해주세요.',
+        'newComment.max' => '최데 100자이하로 입력해주세요.',
     ];
 
     public function render()
@@ -121,6 +121,7 @@ class CommentAdd extends Component
             ]
         );
 
+        // 기존 글 목록에 신규 글 추가
         // public $comments 제거시 같이 제거
 //        $this->comments->prepend($createdComment);
 //        $this->comments->push($createdComment);
@@ -142,6 +143,7 @@ class CommentAdd extends Component
 //        );
 //        $this->emit('alert_remove');
 
+        // 부모 템플릿 새로고침
         $this->emit('refreshComments');
     }
 
